@@ -196,6 +196,8 @@ RUN chmod +x /docker-entrypoint.sh && \
   chown -R user:user /home/user && \
   rm -rf /tmp/*
 COPY --chown=user:user . /home/user/usernetes
+RUN curl https://raw.githubusercontent.com/projectcalico/calico/v3.26.1/manifests/tigera-operator.yaml --output /home/user/usernetes/manifests/calico/tigera-operator.yaml && \
+    chown user:user /home/user/usernetes/manifests/calico/tigera-operator.yaml
 COPY --from=bin-main --chown=user:user / /home/user/usernetes/bin
 RUN ln -sf /home/user/usernetes/boot/docker-unsudo.sh /usr/local/bin/unsudo
 VOLUME /home/user/.local

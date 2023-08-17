@@ -27,7 +27,9 @@ services:
 # 2379/tcp: etcd, 6443/tcp: kube-apiserver
       - --publish=0.0.0.0:2379:2379/tcp
       - --publish=0.0.0.0:6443:6443/tcp
-      - --cni=flannel
+      - --publish=0.0.0.0:4789:4789/udp
+      - --publish=0.0.0.0:179:179/tcp
+      - --cni=calico
       - --cri=
     privileged: true
     tty: true
@@ -46,8 +48,9 @@ services:
       - --cidr=10.0.101.0/24
 # 10250/tcp: kubelet, 8472/udp: flannel
       - --publish=0.0.0.0:10250:10250/tcp
-      - --publish=0.0.0.0:8472:8472/udp
-      - --cni=flannel
+      - --publish=0.0.0.0:4789:4789/udp
+      - --publish=0.0.0.0:179:179/tcp
+      - --cni=calico
       - --cri=crio
     privileged: true
     tty: true
@@ -66,8 +69,9 @@ services:
       - --start=u7s-node.target
       - --cidr=10.0.102.0/24
       - --publish=0.0.0.0:10250:10250/tcp
-      - --publish=0.0.0.0:8472:8472/udp
-      - --cni=flannel
+      - --publish=0.0.0.0:4789:4789/udp
+      - --publish=0.0.0.0:179:179/tcp
+      - --cni=calico
       - --cri=containerd
     privileged: true
     tty: true

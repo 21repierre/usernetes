@@ -11,7 +11,7 @@ trap cleanup EXIT
 
 INFO "Creating the cluster"
 make _up
-master="usernetes_master_1"
+master="usernetes-master-1"
 nodes="2"
 
 export KUBECONFIG="$HOME/.config/usernetes/docker-compose.kubeconfig"
